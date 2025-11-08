@@ -126,7 +126,7 @@ if is_unc_path(r"\\server\share\file.txt"):
 ```bash
 # Individual installation
 pip install dazzle-filekit
-pip install dazzle-tree-lib
+pip install DazzleTreeLib
 pip install unctools
 
 # Or install with extras
