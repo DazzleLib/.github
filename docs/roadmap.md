@@ -36,10 +36,6 @@ Tree structure utilities for hierarchical data.
 
 **Install**: `pip install dazzle-tree-lib`
 
----
-
-### 🚧 In Progress
-
 #### UNCtools
 **Status**: Migrating to DazzleLib organization
 
@@ -54,6 +50,13 @@ Windows UNC path handling and network drive utilities.
 - ✅ PyPI publication under DazzleLib
 
 **Planned Install**: `pip install unctools`
+
+
+---
+
+### 🚧 In Progress
+
+* **Dazzle-Tree-Lib** is currently receiving more testing and development
 
 ---
 
@@ -110,7 +113,7 @@ New libraries are added based on common patterns identified across Dazzle tools.
 ### dazzle-log-lib
 **Structured logging utilities**
 
-**Problem**: Consistent, structured logging across tools is essential for debugging and monitoring.
+**Problem**: Consistent, structured logging across tools is helpful for debugging and monitoring.
 
 **Planned Features**:
 - Structured logging (JSON/text formats)
@@ -264,7 +267,7 @@ Have ideas for new libraries or features? We'd love to hear them!
 
 ### How to Suggest a Library
 
-1. **Check existing discussions**: Search [GitHub Discussions](https://github.com/DazzleLib/discussions)
+1. **Check existing discussions**: Search [GitHub Discussions](https://github.com/organizations/DazzleLib/settings/discussions)
 2. **Describe the problem**: What problem does this library solve?
 3. **Show examples**: Provide code examples of how it would be used
 4. **Identify patterns**: Where do you see this pattern repeating?
@@ -287,9 +290,9 @@ This roadmap is updated quarterly based on:
 - Industry trends
 - Available maintenance capacity
 
-**Last Updated**: January 2025
+**Last Updated**: November 2025
 
-**Next Review**: April 2025
+**Next Review**: Jan 2026
 
 ---
 
