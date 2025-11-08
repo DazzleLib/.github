@@ -269,7 +269,7 @@ Have ideas for new libraries or features? We'd love to hear them!
 
 ### How to Suggest a Library
 
-1. **Check existing discussions**: Search [GitHub Discussions](https://github.com/organizations/DazzleLib/settings/discussions)
+1. **Check existing discussions**: Search [GitHub Discussions](https://github.com/orgs/DazzleLib/discussions)
 2. **Describe the problem**: What problem does this library solve?
 3. **Show examples**: Provide code examples of how it would be used
 4. **Identify patterns**: Where do you see this pattern repeating?
