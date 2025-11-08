@@ -262,7 +262,7 @@ Provide hook points for users to extend behavior without forking.
 
 These principles are not set in stone. If you have ideas for improving DazzleLib's design philosophy, we'd love to hear them:
 
-- **GitHub Discussions**: [DazzleLib Discussions](https://github.com/DazzleLib/discussions)
+- **GitHub Discussions**: [DazzleLib Discussions](https://github.com/DazzleLib/.github/discussions)
 - **Philosophy Issues**: Tag issues with `philosophy` label for architectural discussions
 
 ---
