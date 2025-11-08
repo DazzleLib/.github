@@ -62,10 +62,10 @@ hash_value = calculate_file_hash("file.txt", algorithm="sha256")
 ### 🌳 [dazzle-tree-lib](https://github.com/DazzleLib/dazzle-tree-lib)
 **Tree structure utilities for hierarchical data**
 
-[![PyPI](https://img.shields.io/pypi/v/dazzle-tree-lib)](https://pypi.org/project/dazzle-tree-lib/)
+[![PyPI](https://img.shields.io/pypi/v/dazzletreelib)](https://pypi.org/project/dazzletreelib/)
 
 ```bash
-pip install dazzle-tree-lib
+pip install dazzletreelib
 ```
 
 **Features**:
@@ -92,7 +92,7 @@ child = root.add_child("child1")
 ### 🔗 [UNCtools](https://github.com/DazzleLib/UNCtools)
 **Windows UNC path handling and network drive utilities**
 
-[![PyPI](https://img.shields.io/pypi/v/unctools)](https://pypi.org/project/unctools/) *(if published)*
+[![PyPI](https://img.shields.io/pypi/v/unctools)](https://pypi.org/project/unctools/)
 
 ```bash
 pip install unctools
@@ -213,7 +213,7 @@ We follow semantic versioning strictly. Breaking changes are rare and well-docum
 ### Current (2025)
 - ✅ dazzle-filekit: Stable, published on PyPI
 - ✅ dazzle-tree-lib: Stable, published on PyPI
-- 🚧 UNCtools: Migrating to DazzleLib organization
+- ✅ UNCtools: Stable, published on PyPI
 
 ### Planned Libraries
 - **dazzle-config-lib**: Configuration file handling (YAML, TOML, JSON)
