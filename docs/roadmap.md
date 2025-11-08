@@ -50,8 +50,8 @@ Windows UNC path handling and network drive utilities.
 - ✅ Drive letter to UNC conversion
 - ✅ Long path support (>260 characters)
 - ✅ Cross-platform safety (no-op on Unix)
-- 🚧 Moving repository to DazzleLib organization
-- 🚧 PyPI publication under DazzleLib
+- ✅ Moving repository to DazzleLib organization
+- ✅ PyPI publication under DazzleLib
 
 **Planned Install**: `pip install unctools`
 
