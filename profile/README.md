@@ -7,21 +7,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Sponsor](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?logo=github-sponsors)](https://github.com/sponsors/djdarcy)
 
-> High-quality, reusable Python libraries that power [DazzleTools](https://github.com/DazzleTools), [DazzleAI](https://github.com/DazzleAI), and [DazzleNodes](https://github.com/DazzleNodes).
+> High-quality, reusable Python libraries that power [DazzleTools](https://github.com/DazzleTools), [DazzleML](https://github.com/DazzleML), and [DazzleNodes](https://github.com/DazzleNodes).
 
 ---
 
 ## What is DazzleLib?
 
-**DazzleLib** is a collection of foundational Python libraries designed to solve common development challenges with cross-platform compatibility, robust error handling, and minimal dependencies.
+**DazzleLib** is a collection of foundational Python libraries designed to solve common development challenges with cross-platform compatibility, robust error handling, and minimal dependencies. Built on principles of composability and clarity, these libraries are the building blocks powering the entire Dazzle ecosystem.
 
-### Philosophy
-
-- **Building Blocks** - Libraries are composable primitives, not monolithic frameworks
-- **Cross-Platform** - Work seamlessly on Windows, Linux, and macOS
-- **MIT Licensed** - Maximum compatibility for both open source and commercial use
-- **Zero Magic** - Clear, predictable APIs with explicit behavior
-- **Well Tested** - Test coverage for reliability
+**[Read our design philosophy →](docs/philosophy.md)**
 
 ---
 
@@ -36,56 +30,24 @@
 pip install dazzle-filekit
 ```
 
-**Features**:
-- File operations (copy, move, verify) with metadata preservation
-- Hash calculation and verification (MD5, SHA1, SHA256, SHA512)
-- Cross-platform path handling including Windows UNC paths
-- Directory comparison and synchronization
-- Safe file operations with conflict resolution
+File operations (copy, move, verify) with hash calculation, metadata preservation, and cross-platform path handling including Windows UNC paths.
 
-**Used by**: preserve, relinker (future), and other file management tools
-
-```python
-from dazzle_filekit import copy_file, calculate_file_hash
-
-# Copy with metadata preservation
-copy_file("source.txt", "dest.txt", preserve_metadata=True)
-
-# Calculate and verify hashes
-hash_value = calculate_file_hash("file.txt", algorithm="sha256")
-```
-
-**Documentation**: [README](https://github.com/DazzleLib/dazzle-filekit#readme)
+**[Full documentation →](docs/libraries/dazzle-filekit.md)** | **[Repository →](https://github.com/DazzleLib/dazzle-filekit)**
 
 ---
 
 ### 🌳 [dazzle-tree-lib](https://github.com/DazzleLib/dazzle-tree-lib)
 **Tree structure utilities for hierarchical data**
 
-[![PyPI](https://img.shields.io/pypi/v/dazzletreelib)](https://pypi.org/project/dazzletreelib/)
+[![PyPI](https://img.shields.io/pypi/v/dazzle-tree-lib)](https://pypi.org/project/dazzle-tree-lib/)
 
 ```bash
-pip install dazzletreelib
+pip install dazzle-tree-lib
 ```
 
-**Features**:
-- Generic tree data structures
-- Tree traversal algorithms (DFS, BFS, iterative)
-- Tree visualization and printing
-- Path operations on tree structures
-- Node manipulation and queries
+Generic tree data structures with traversal algorithms (DFS, BFS), visualization tools, and path-based operations.
 
-**Used by**: Directory tree operations, hierarchical data processing
-
-```python
-from dazzle_tree_lib import Tree, TreeNode
-
-# Create and manipulate tree structures
-root = TreeNode("root")
-child = root.add_child("child1")
-```
-
-**Documentation**: [README](https://github.com/DazzleLib/dazzle-tree-lib#readme)
+**[Full documentation →](docs/libraries/dazzle-tree-lib.md)** | **[Repository →](https://github.com/DazzleLib/dazzle-tree-lib)**
 
 ---
 
@@ -98,176 +60,43 @@ child = root.add_child("child1")
 pip install unctools
 ```
 
-**Features**:
-- Parse and manipulate Windows UNC paths
-- Network drive detection and mapping
-- Convert between drive letters and UNC paths
-- Handle long path names (>260 characters)
-- Cross-platform compatibility (no-op on Unix)
+Parse UNC paths, detect network drives, convert between drive letters and UNC paths, and handle long path names (>260 characters). Cross-platform safe with graceful no-ops on Unix systems.
 
-**Used by**: dazzle-filekit, Windows-focused file tools
+**[Full documentation →](docs/libraries/unctools.md)** | **[Repository →](https://github.com/DazzleLib/UNCtools)**
+
+---
+
+## Quick Start
 
 ```python
+# File operations with verification
+from dazzle_filekit import copy_file, calculate_file_hash
+
+copy_file("source.txt", "dest.txt", preserve_metadata=True)
+hash_value = calculate_file_hash("file.txt", algorithm="sha256")
+
+# Tree structures
+from dazzle_tree_lib import TreeNode
+
+root = TreeNode("root")
+child = root.add_child("child1")
+
+# Windows UNC paths
 from unctools import is_unc_path, parse_unc_path
 
-# Work with UNC paths
 if is_unc_path(r"\\server\share\file.txt"):
     server, share, path = parse_unc_path(r"\\server\share\file.txt")
 ```
 
-**Documentation**: [README](https://github.com/DazzleLib/UNCtools#readme)
-
 ---
 
-## Installation
+## Documentation
 
-### Install All Libraries
-
-```bash
-# Individual installation
-pip install dazzle-filekit
-pip install DazzleTreeLib
-pip install unctools
-
-# Or install with extras
-pip install dazzle-filekit[unctools]  # Includes UNC path support
-```
-
-### Development Installation
-
-```bash
-# Clone and install in development mode
-git clone https://github.com/DazzleLib/<library-name>
-cd <library-name>
-pip install -e ".[dev]"
-```
-
----
-
-## Usage Patterns
-
-### File Operations with Verification
-
-```python
-from dazzle_filekit import copy_file, verify_copied_files
-
-# Copy files with automatic verification
-copy_file("source.txt", "backup/dest.txt",
-          preserve_metadata=True)
-
-# Verify copies
-is_valid = verify_copied_files("source_dir", "backup_dir")
-```
-
-### Cross-Platform Path Handling
-
-```python
-from dazzle_filekit import normalize_path, is_same_file
-
-# Normalize paths across platforms
-path = normalize_path("/some/path/../file.txt")
-
-# Compare paths reliably
-if is_same_file(path1, path2):
-    print("Same file!")
-```
-
-### Tree Operations
-
-```python
-from dazzle_tree_lib import Tree
-
-# Build and traverse tree structures
-tree = Tree()
-root = tree.add_node("root")
-child = tree.add_node("child", parent=root)
-
-# Traverse
-for node in tree.traverse_dfs():
-    print(node.value)
-```
-
----
-
-## Design Principles
-
-### 1. Minimal Dependencies
-Libraries have minimal external dependencies to reduce installation complexity and potential conflicts.
-
-### 2. Cross-Platform by Default
-All APIs work consistently across Windows, Linux, and macOS. Platform-specific features are clearly marked and gracefully degrade.
-
-### 3. Explicit over Implicit
-Function behavior is predictable and well-documented. No magic, no surprises.
-
-### 4. Composability
-Libraries are designed to work together but don't require each other. Use what you need.
-
-### 5. Backward Compatibility
-We follow semantic versioning strictly. Breaking changes are rare and well-documented.
-
----
-
-## Library Roadmap
-
-### Current (2025)
-- ✅ dazzle-filekit: Stable, published on PyPI
-- ✅ dazzle-tree-lib: Stable, published on PyPI
-- ✅ UNCtools: Stable, published on PyPI
-
-### Planned Libraries
-- **dazzle-config-lib**: Configuration file handling (YAML, TOML, JSON)
-- **dazzle-cli-lib**: Command-line interface building blocks
-- **dazzle-log-lib**: Structured logging utilities
-- **dazzle-test-lib**: Testing utilities and fixtures
-
-*New libraries are added based on common patterns across Dazzle tools.*
-
----
-
-## Dependencies Between Libraries
-
-```
-UNCtools (standalone)
-    ↓ (optional)
-dazzle-filekit (uses UNCtools for Windows paths)
-    ↓
-dazzle-tree-lib (standalone, but often used with filekit)
-```
-
-### Dependency Guidelines
-- **No circular dependencies**: Libraries form a directed acyclic graph
-- **Optional dependencies**: Advanced features can require additional installs
-- **Explicit imports**: Import exactly what you need
-
----
-
-## Contributing
-
-Contributions to DazzleLib are welcome! Each library has its own repository and contribution guidelines.
-
-### Development Setup
-```bash
-# Clone the library
-git clone https://github.com/DazzleLib/<library-name>
-cd <library-name>
-
-# Install in development mode with dev dependencies
-pip install -e ".[dev]"
-
-# Run tests
-pytest tests/ -v --cov
-
-# Format code
-black dazzle_* tests/
-flake8 dazzle_* tests/
-```
-
-### Code Quality Standards
-- **Type hints**: Use type annotations for all public APIs
-- **Docstrings**: Google-style docstrings for all public functions/classes
-- **Tests**: Minimum 80% code coverage
-- **Formatting**: Black + Flake8 compliant
+- **[Design Philosophy](docs/philosophy.md)** - Principles and architectural decisions
+- **[Library Roadmap](docs/roadmap.md)** - Current status and planned libraries
+- **[dazzle-filekit Documentation](docs/libraries/dazzle-filekit.md)** - File operations
+- **[dazzle-tree-lib Documentation](docs/libraries/dazzle-tree-lib.md)** - Tree structures
+- **[UNCtools Documentation](docs/libraries/unctools.md)** - UNC path handling
 
 ---
 
@@ -275,69 +104,56 @@ flake8 dazzle_* tests/
 
 DazzleLib powers these projects in the Dazzle ecosystem:
 
-### [DazzleTools](https://github.com/DazzleTools)
-- **preserve**: Uses dazzle-filekit for file operations and verification
-- **dazzlelink**: Uses dazzle-filekit for file references
-- **relinker**: Heavy use of dazzle-filekit and dazzlelink
-
-### [DazzleAI](https://github.com/DazzleAI)
-- File organization and management tools use dazzle-filekit
-- Training data management uses dazzle-tree-lib
-
-### [DazzleNodes](https://github.com/DazzleNodes)
-- ComfyUI nodes use dazzle-filekit for file operations where needed
-
-### External Projects
-If you're using DazzleLib in your project, let us know! We'd love to feature you here.
+**[DazzleTools](https://github.com/DazzleTools)**: preserve, dazzlelink, relinker (future)
+**[DazzleML](https://github.com/DazzleML)**: File organization and training data management
+**[DazzleNodes](https://github.com/DazzleNodes)**: ComfyUI custom nodes file operations
 
 ---
 
 ## Platform Support
 
-| Library | Windows | Linux | macOS | Python Versions |
-|---------|---------|-------|-------|-----------------|
+| Library | Windows | Linux | macOS | Python |
+|---------|---------|-------|-------|--------|
 | dazzle-filekit | ✅ Full | ✅ Full | ✅ Full | 3.8+ |
 | dazzle-tree-lib | ✅ Full | ✅ Full | ✅ Full | 3.8+ |
 | UNCtools | ✅ Full | ⚠️ No-op | ⚠️ No-op | 3.8+ |
 
-**Notes**:
-- UNCtools provides full functionality on Windows, graceful no-ops on Unix systems
-- All libraries tested on Python 3.8, 3.9, 3.10, 3.11, 3.12
+---
+
+## Contributing
+
+Contributions are welcome! Each library has its own repository with contribution guidelines.
+
+**General Process**:
+1. Fork the library repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Ensure all tests pass (`pytest`)
+5. Submit a pull request
+
+**[Read full contributing guidelines →](CONTRIBUTING.md)**
 
 ---
 
-## Documentation
+## 💰 Sustainability
 
-- **API Documentation**: See individual library repositories
-- **Tutorials**: [DazzleProj.com](https://dazzleproj.com) *(coming soon)*
-- **Examples**: Check `examples/` directory in each library
-- **Discussions**: [GitHub Discussions](https://github.com/DazzleLib/discussions)
+DazzleLib is part of the [DazzleProj](https://github.com/DazzleProj) ecosystem.
 
----
+**Current sponsorship: $0/month | Goal: $1,000/month**
 
-## Testing
+If you're using DazzleLib in commercial projects, these libraries save you weeks of development time. Contributing $25-100/month is a fraction of that value.
 
-All libraries maintain high test coverage:
+**[Sponsor DazzleProj on GitHub](https://github.com/sponsors/djdarcy)** ☕
 
-```bash
-# Run tests for a library
-cd <library-name>
-pytest tests/ -v --cov=<library_name>
+**Sponsorship Benefits**:
+- Priority support for library issues
+- Influence roadmap and feature priorities
+- Early access to new libraries
+- Recognition in README and website
 
-# Run specific test file
-pytest tests/test_file_operations.py -v
+Like the project?
 
-# Run with coverage report
-pytest tests/ --cov=<library_name> --cov-report=html
-```
-
----
-
-## License
-
-All DazzleLib libraries are released under the **MIT License** for maximum compatibility with both open source and commercial projects.
-
-See individual library repositories for specific license files.
+[!["Buy Me A Coffee"](https://camo.githubusercontent.com/0b448aabee402aaf7b3b256ae471e7dc66bcf174fad7d6bb52b27138b2364e47/68747470733a2f2f7777772e6275796d6561636f666665652e636f6d2f6173736574732f696d672f637573746f6d5f696d616765732f6f72616e67655f696d672e706e67)](https://www.buymeacoffee.com/djdarcy)
 
 ---
 
@@ -349,7 +165,15 @@ DazzleLib is one of five organizations in the Dazzle ecosystem:
 - **[DazzleLib](https://github.com/DazzleLib)** - Foundation libraries ← *You are here*
 - **[DazzleTools](https://github.com/DazzleTools)** - Command-line tools
 - **[DazzleNodes](https://github.com/DazzleNodes)** - ComfyUI custom nodes
-- **[DazzleAI](https://github.com/DazzleAI)** - AI development tools
+- **[DazzleML](https://github.com/DazzleML)** - AI development tools
+
+---
+
+## License
+
+All DazzleLib libraries are released under the **MIT License** for maximum compatibility with both open source and commercial projects.
+
+See individual library repositories for specific license files.
 
 ---
 
