@@ -1,43 +1,33 @@
-# .github-repo
+# DazzleLib Organization Profile
 
-$badges
+This repository contains the organization profile and community health files for **DazzleLib**.
 
-DazzleLib organization profile and community health files
+## What is This Repository?
 
-## Overview
+The `.github` repository is a special GitHub repository that provides organization-wide community health files and the organization profile README that displays on the [DazzleLib organization page](https://github.com/DazzleLib).
 
-## Features
+## Contents
 
-- Feature 1
-- Feature 2
-- Feature 3
+- **profile/README.md** - Organization profile displayed at https://github.com/DazzleLib
+- **.github/FUNDING.yml** - Sponsor button configuration
+- **.github/CODEOWNERS** - Default code owners for organization repositories
+- **.github/ISSUE_TEMPLATE/** - Default issue templates
 
-## Installation
+## About DazzleLib
 
-```bash
-# Installation instructions here
-```
+DazzleLib is the Python libraries organization within the DazzleProj ecosystem. We provide shared libraries for cross-platform file operations, verification, and utilities that power the entire Dazzle ecosystem.
 
-## Usage
+Part of the **[DazzleProj](https://github.com/DazzleProj)** ecosystem.
 
-```bash
-# Usage examples here
-```
+## Contributing
 
-## Development
+Contributions to improve the organization profile and community health files are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-### Prerequisites
+## Support the Project
 
-- List prerequisites here
+If DazzleLib saves you time, please consider supporting continued development:
 
-### Setup
-
-```bash
-# Setup instructions here
-```
-
-## Contributions
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on how to contribute.
+**[Become a GitHub Sponsor](https://github.com/sponsors/djdarcy)**
 
 Like the project?
 
@@ -45,8 +35,10 @@ Like the project?
 
 ## License
 
-This project is licensed under the terms specified in the LICENSE file.
+MIT - See LICENSE file for details
 
-## Acknowledgements
+## Links
 
-Dustin 6962246+djdarcy@users.noreply.github.com
+- **Main Organization**: [github.com/DazzleProj](https://github.com/DazzleProj)
+- **Website**: [dazzleproj.com](https://dazzleproj.com)
+- **DazzleLib**: [github.com/DazzleLib](https://github.com/DazzleLib)
