@@ -36,8 +36,10 @@ Tree structure utilities for hierarchical data.
 
 **Install**: `pip install dazzle-tree-lib`
 
+---
+
 #### UNCtools
-**Status**: Migrating to DazzleLib organization
+**Status**: Stable, published on PyPI
 
 Windows UNC path handling and network drive utilities.
 
