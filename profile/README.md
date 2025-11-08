@@ -15,7 +15,7 @@
 
 **DazzleLib** is a collection of foundational Python libraries designed to solve common development challenges with cross-platform compatibility, robust error handling, and minimal dependencies. Built on principles of composability and clarity, these libraries are the building blocks powering the entire Dazzle ecosystem.
 
-**[Read our design philosophy →](docs/philosophy.md)**
+**[Read our design philosophy →](../docs/philosophy.md)**
 
 ---
 
@@ -32,22 +32,22 @@ pip install dazzle-filekit
 
 File operations (copy, move, verify) with hash calculation, metadata preservation, and cross-platform path handling including Windows UNC paths.
 
-**[Full documentation →](docs/libraries/dazzle-filekit.md)** | **[Repository →](https://github.com/DazzleLib/dazzle-filekit)**
+**[Full documentation →](../docs/libraries/dazzle-filekit.md)** | **[Repository →](https://github.com/DazzleLib/dazzle-filekit)**
 
 ---
 
 ### 🌳 [dazzle-tree-lib](https://github.com/DazzleLib/dazzle-tree-lib)
 **Tree structure utilities for hierarchical data**
 
-[![PyPI](https://img.shields.io/pypi/v/dazzle-tree-lib)](https://pypi.org/project/dazzle-tree-lib/)
+[![PyPI](https://img.shields.io/pypi/v/dazzletreelib)](https://pypi.org/project/dazzletreelib/)
 
 ```bash
-pip install dazzle-tree-lib
+pip install dazzletreelib
 ```
 
 Generic tree data structures with traversal algorithms (DFS, BFS), visualization tools, and path-based operations.
 
-**[Full documentation →](docs/libraries/dazzle-tree-lib.md)** | **[Repository →](https://github.com/DazzleLib/dazzle-tree-lib)**
+**[Full documentation →](../docs/libraries/dazzle-tree-lib.md)** | **[Repository →](https://github.com/DazzleLib/dazzle-tree-lib)**
 
 ---
 
@@ -62,7 +62,7 @@ pip install unctools
 
 Parse UNC paths, detect network drives, convert between drive letters and UNC paths, and handle long path names (>260 characters). Cross-platform safe with graceful no-ops on Unix systems.
 
-**[Full documentation →](docs/libraries/unctools.md)** | **[Repository →](https://github.com/DazzleLib/UNCtools)**
+**[Full documentation →](../docs/libraries/unctools.md)** | **[Repository →](https://github.com/DazzleLib/UNCtools)**
 
 ---
 
@@ -76,7 +76,7 @@ copy_file("source.txt", "dest.txt", preserve_metadata=True)
 hash_value = calculate_file_hash("file.txt", algorithm="sha256")
 
 # Tree structures
-from dazzle_tree_lib import TreeNode
+from dazzletreelib import TreeNode
 
 root = TreeNode("root")
 child = root.add_child("child1")
@@ -92,11 +92,11 @@ if is_unc_path(r"\\server\share\file.txt"):
 
 ## Documentation
 
-- **[Design Philosophy](docs/philosophy.md)** - Principles and architectural decisions
-- **[Library Roadmap](docs/roadmap.md)** - Current status and planned libraries
-- **[dazzle-filekit Documentation](docs/libraries/dazzle-filekit.md)** - File operations
-- **[dazzle-tree-lib Documentation](docs/libraries/dazzle-tree-lib.md)** - Tree structures
-- **[UNCtools Documentation](docs/libraries/unctools.md)** - UNC path handling
+- **[Design Philosophy](../docs/philosophy.md)** - Principles and architectural decisions
+- **[Library Roadmap](../docs/roadmap.md)** - Current status and planned libraries
+- **[dazzle-filekit Documentation](../docs/libraries/dazzle-filekit.md)** - File operations
+- **[dazzle-tree-lib Documentation](../docs/libraries/dazzle-tree-lib.md)** - Tree structures
+- **[UNCtools Documentation](../docs/libraries/unctools.md)** - UNC path handling
 
 ---
 
@@ -137,23 +137,9 @@ Contributions are welcome! Each library has its own repository with contribution
 
 ## 💰 Sustainability
 
-DazzleLib is part of the [DazzleProj](https://github.com/DazzleProj) ecosystem.
+**[Learn about supporting DazzleLib →](../docs/sustainability.md)**
 
-**Current sponsorship: $0/month | Goal: $1,000/month**
-
-If you're using DazzleLib in commercial projects, these libraries save you weeks of development time. Contributing $25-100/month is a fraction of that value.
-
-**[Sponsor DazzleProj on GitHub](https://github.com/sponsors/djdarcy)** ☕
-
-**Sponsorship Benefits**:
-- Priority support for library issues
-- Influence roadmap and feature priorities
-- Early access to new libraries
-- Recognition in README and website
-
-Like the project?
-
-[!["Buy Me A Coffee"](https://camo.githubusercontent.com/0b448aabee402aaf7b3b256ae471e7dc66bcf174fad7d6bb52b27138b2364e47/68747470733a2f2f7777772e6275796d6561636f666665652e636f6d2f6173736574732f696d672f637573746f6d5f696d616765732f6f72616e67655f696d672e706e67)](https://www.buymeacoffee.com/djdarcy)
+If DazzleLib saves you time, consider **[sponsoring on GitHub](https://github.com/sponsors/djdarcy)** or **[buying us a coffee](https://www.buymeacoffee.com/djdarcy)**
 
 ---
 
