@@ -246,14 +246,6 @@ dazzle-tree-lib (standalone, but often used with filekit)
 
 Contributions to DazzleLib are welcome! Each library has its own repository and contribution guidelines.
 
-### General Process
-1. Fork the library repository
-2. Create a feature branch
-3. Add tests for new functionality
-4. Ensure all tests pass (`pytest`)
-5. Update documentation
-6. Submit a pull request
-
 ### Development Setup
 ```bash
 # Clone the library
@@ -286,7 +278,7 @@ DazzleLib powers these projects in the Dazzle ecosystem:
 ### [DazzleTools](https://github.com/DazzleTools)
 - **preserve**: Uses dazzle-filekit for file operations and verification
 - **dazzlelink**: Uses dazzle-filekit for file references
-- **relinker** *(future)*: Heavy use of dazzle-filekit and dazzlelink
+- **relinker**: Heavy use of dazzle-filekit and dazzlelink
 
 ### [DazzleAI](https://github.com/DazzleAI)
 - File organization and management tools use dazzle-filekit
@@ -311,27 +303,6 @@ If you're using DazzleLib in your project, let us know! We'd love to feature you
 **Notes**:
 - UNCtools provides full functionality on Windows, graceful no-ops on Unix systems
 - All libraries tested on Python 3.8, 3.9, 3.10, 3.11, 3.12
-
----
-
-## 💰 Sustainability
-
-DazzleLib is part of the [DazzleProj](https://github.com/DazzleProj) ecosystem.
-
-**Current sponsorship: $0/month | Goal: $1,000/month**
-
-If you're using DazzleLib in commercial projects:
-- These libraries save you weeks of development time
-- At $100/hour × 40 hours = **$4,000+ in value**
-- Contributing $25-100/month is a fraction of that value
-
-**[Sponsor DazzleProj on GitHub](https://github.com/sponsors/djdarcy)** ☕
-
-Benefits of sponsoring:
-- Priority support for library issues
-- Influence roadmap and feature priorities
-- Early access to new libraries
-- Recognition in README and website
 
 ---
 
