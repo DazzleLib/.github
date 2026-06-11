@@ -19,6 +19,53 @@
 
 ---
 
+## The Stack
+
+DazzleLib's libraries form a layered stack with one rule above all: **every capability has exactly one home, and dependencies only point down.** The full architecture contract lives in **[STACK-MAP.md](../docs/STACK-MAP.md)** (frozen v1.0, 2026-06-11).
+
+| Layer | Domain | Library | Answers |
+|---|---|---|---|
+| B | Bedrock contracts | `dazzle-lib` *(in development)* | "What can every stack object do (view/serialize), and what shapes do cross-layer payloads have?" |
+| L0 | Path identity | `dazzle-unctools` *(today: `unctools`)* | "Is this path UNC / network / subst / local -- and what is its other name?" |
+| L1 | Filesystem primitives | `dazzle-filekit` | "Do ONE thing to ONE filesystem object, correctly, on every OS." |
+| L2 | Link serialization | `dazzle-linklib` *(planned -- extracted from the dazzlelink tool)* | "Represent a link as durable portable DATA and rehydrate it anywhere." |
+| L3 | Operation orchestration | `dazzle-preservelib` *(planned -- extracted from the preserve tool)* | "Do MANY things as a transaction: manifest, verify, conflict policy." |
+| ⊥ | Traversal | `dazzle-treelib` *(today: `dazzletreelib`)* | "Visit a tree efficiently" -- orthogonal engine, usable from any layer. |
+
+```mermaid
+graph TD
+    subgraph TOOLS["DazzleTools -- CLI tools (consumers)"]
+        preserve_cli["preserve"]
+        dzlink_cli["dazzlelink"]
+        other["safedel · csb · ghtraf · ..."]
+    end
+    subgraph LIBS["DazzleLib -- libraries"]
+        preservelib["L3 dazzle-preservelib"]
+        dzlinklib["L2 dazzle-linklib"]
+        filekit["L1 dazzle-filekit"]
+        unctools["L0 dazzle-unctools"]
+        treelib["⊥ dazzle-treelib"]
+        bedrock["B dazzle-lib"]
+    end
+    preserve_cli --> preservelib
+    dzlink_cli --> dzlinklib
+    other --> preservelib
+    other --> filekit
+    preservelib --> filekit
+    preservelib -. "optional backend" .-> dzlinklib
+    dzlinklib --> filekit
+    dzlinklib --> unctools
+    unctools --> bedrock
+    filekit --> bedrock
+    dzlinklib --> bedrock
+    preservelib --> bedrock
+    treelib -. optional .-> bedrock
+```
+
+The rules in brief: one home per capability · dependencies point down (also the MIT/GPL license guard) · sibling imports are real dependencies (extras need hard, named errors) · libraries live here, CLI tools live in [DazzleTools](https://github.com/DazzleTools) · uniform `dazzle-*` naming on all three axes (dist / import / repo) · migration shims are temporary, noisy, tracked, terminal · names must teach the layer model.
+
+---
+
 ## Libraries
 
 ### 📁 [dazzle-filekit](https://github.com/DazzleLib/dazzle-filekit)
