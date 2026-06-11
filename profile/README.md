@@ -68,48 +68,55 @@ The rules in brief: one home per capability · dependencies point down (also the
 
 ## Libraries
 
-### 📁 [dazzle-filekit](https://github.com/DazzleLib/dazzle-filekit)
-**Cross-platform file operations with verification and metadata preservation**
+### 🧱 [dazzle-lib](https://github.com/DazzleLib/dazzle-lib) [![PyPI](https://img.shields.io/pypi/v/dazzle-lib)](https://pypi.org/project/dazzle-lib/)
+```bash
+pip install dazzle-lib
+```
 
-[![PyPI](https://img.shields.io/pypi/v/dazzle-filekit)](https://pypi.org/project/dazzle-filekit/)
+**The bedrock: shared Protocols, TypedDict payload schemas, and the exception root**
 
+Structural contracts every stack library builds on -- `Viewable`/`Serializable` protocols, cross-layer payload shapes, one catchable `DazzleError` root. Types only, stdlib only, behavior banned by charter.
+
+**[Full documentation →](https://github.com/DazzleLib/dazzle-lib/tree/main/docs)** | **[Repository →](https://github.com/DazzleLib/dazzle-lib)**
+
+---
+
+### 📁 [dazzle-filekit](https://github.com/DazzleLib/dazzle-filekit) [![PyPI](https://img.shields.io/pypi/v/dazzle-filekit)](https://pypi.org/project/dazzle-filekit/)
 ```bash
 pip install dazzle-filekit
 ```
 
+**Cross-platform file operations with verification and metadata preservation**
+
 File operations (copy, move, verify) with hash calculation, metadata preservation, and cross-platform path handling including Windows UNC paths.
 
-**[Full documentation →](../docs/libraries/dazzle-filekit.md)** | **[Repository →](https://github.com/DazzleLib/dazzle-filekit)**
+**[Full documentation →](https://github.com/DazzleLib/dazzle-filekit/tree/main/docs)** | **[Repository →](https://github.com/DazzleLib/dazzle-filekit)**
 
 ---
 
-### 🌳 [dazzle-tree-lib](https://github.com/DazzleLib/dazzle-tree-lib)
-**Tree structure utilities for hierarchical data**
-
-[![PyPI](https://img.shields.io/pypi/v/dazzletreelib)](https://pypi.org/project/dazzletreelib/)
-
+### 🌳 [dazzle-tree-lib](https://github.com/DazzleLib/dazzle-tree-lib) [![PyPI](https://img.shields.io/pypi/v/dazzletreelib)](https://pypi.org/project/dazzletreelib/)
 ```bash
 pip install dazzletreelib
 ```
 
+**Tree structure utilities for hierarchical data**
+
 Generic tree data structures with traversal algorithms (DFS, BFS), visualization tools, and path-based operations.
 
-**[Full documentation →](../docs/libraries/dazzle-tree-lib.md)** | **[Repository →](https://github.com/DazzleLib/dazzle-tree-lib)**
+**[Full documentation →](https://github.com/DazzleLib/dazzle-tree-lib/tree/main/docs)** | **[Repository →](https://github.com/DazzleLib/dazzle-tree-lib)**
 
 ---
 
-### 🔗 [UNCtools](https://github.com/DazzleLib/UNCtools)
-**Windows UNC path handling and network drive utilities**
-
-[![PyPI](https://img.shields.io/pypi/v/unctools)](https://pypi.org/project/unctools/)
-
+### 🔗 [UNCtools](https://github.com/DazzleLib/UNCtools) [![PyPI](https://img.shields.io/pypi/v/unctools)](https://pypi.org/project/unctools/)
 ```bash
 pip install unctools
 ```
 
+**Windows UNC path handling and network drive utilities**
+
 Parse UNC paths, detect network drives, convert between drive letters and UNC paths, and handle long path names (>260 characters). Cross-platform safe with graceful no-ops on Unix systems.
 
-**[Full documentation →](../docs/libraries/unctools.md)** | **[Repository →](https://github.com/DazzleLib/UNCtools)**
+**[Full documentation →](https://github.com/DazzleLib/UNCtools/tree/main/docs)** | **[Repository →](https://github.com/DazzleLib/UNCtools)**
 
 ---
 
@@ -139,11 +146,11 @@ if is_unc_path(r"\\server\share\file.txt"):
 
 ## Documentation
 
+Org-level documents live here; per-library documentation lives in each repository's own `docs/` (linked from the sections above), so it stays maintained alongside the code.
+
+- **[Architecture Contract (STACK-MAP)](../docs/STACK-MAP.md)** - The frozen layer model: one home per capability, dependencies point down
 - **[Design Philosophy](../docs/philosophy.md)** - Principles and architectural decisions
 - **[Library Roadmap](../docs/roadmap.md)** - Current status and planned libraries
-- **[dazzle-filekit Documentation](../docs/libraries/dazzle-filekit.md)** - File operations
-- **[dazzle-tree-lib Documentation](../docs/libraries/dazzle-tree-lib.md)** - Tree structures
-- **[UNCtools Documentation](../docs/libraries/unctools.md)** - UNC path handling
 
 ---
 
@@ -161,6 +168,7 @@ DazzleLib powers these projects in the Dazzle ecosystem:
 
 | Library | Windows | Linux | macOS | Python |
 |---------|---------|-------|-------|--------|
+| dazzle-lib | ✅ Full | ✅ Full | ✅ Full | 3.9+ |
 | dazzle-filekit | ✅ Full | ✅ Full | ✅ Full | 3.8+ |
 | dazzle-tree-lib | ✅ Full | ✅ Full | ✅ Full | 3.8+ |
 | UNCtools | ✅ Full | ⚠️ No-op | ⚠️ No-op | 3.8+ |
