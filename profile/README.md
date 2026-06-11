@@ -122,24 +122,36 @@ Parse UNC paths, detect network drives, convert between drive letters and UNC pa
 
 ## Quick Start
 
+One task, climbing the stack: *verify-and-copy a project folder off a network share* -- each layer is the basis for the next.
+
 ```python
-# File operations with verification
-from dazzle_filekit import copy_file, calculate_file_hash
+# L0 -- dazzle-unctools: settle the path's IDENTITY before touching it
+from unctools import is_unc_path, convert_to_local
 
-copy_file("source.txt", "dest.txt", preserve_metadata=True)
-hash_value = calculate_file_hash("file.txt", algorithm="sha256")
+src_root = r"\\server\share\project"
+if is_unc_path(src_root):
+    src_root = convert_to_local(src_root)        # mapped drive letter, if one exists
 
-# Tree structures
-from dazzletreelib import TreeNode
+# ⊥ -- dazzle-tree-lib: traverse that root to find what to operate on
+from dazzletreelib.sync import traverse_tree, FileSystemAdapter, FileSystemNode
 
-root = TreeNode("root")
-child = root.add_child("child1")
+files = [node.path for node in traverse_tree(FileSystemNode(src_root), FileSystemAdapter())
+         if node.is_leaf()]
 
-# Windows UNC paths
-from unctools import is_unc_path, parse_unc_path
+# L1 -- dazzle-filekit: do each operation correctly, metadata and all
+from dazzle_filekit import copy_file, calculate_file_hash, collect_file_metadata
 
-if is_unc_path(r"\\server\share\file.txt"):
-    server, share, path = parse_unc_path(r"\\server\share\file.txt")
+for src in files:
+    copy_file(src, f"D:/backup/{src.name}", preserve_attrs=True)
+    hashes = calculate_file_hash(src, algorithms=["sha256"])     # {"sha256": "..."}
+
+# B -- dazzle-lib: results travel as TYPED, serializable payloads
+from dazzle_lib import FileMetadataDict
+
+snapshot: FileMetadataDict = collect_file_metadata(files[0])     # same shape, now contractual
+
+# L2 (dazzle-linklib) will serialize links as portable data over these primitives;
+# L3 (dazzle-preservelib) will wrap the whole flow in a manifest with verification.
 ```
 
 ---
