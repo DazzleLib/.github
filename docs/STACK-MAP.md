@@ -20,22 +20,22 @@
 | Layer | Dist | Import | Repo | Change |
 |---|---|---|---|---|
 | B | `dazzle-lib` | `dazzle_lib` | `DazzleLib/dazzle-lib` | new (Phase F) |
-| L0 | `dazzle-unctools` | `dazzle_unctools` | `DazzleLib/dazzle-unctools` | rename all three (from `unctools`/`UNCtools`) + PyPI tombstone |
+| L0 | `dazzle-unctools` (pointer) -> real dist `unctools` | `unctools` | `DazzleLib/UNCtools` | **AMENDED (D9a)**: codeless pointer dist only; import/repo unchanged; full rename preserved as a later 1.0-style option |
 | L1 | `dazzle-filekit` | `dazzle_filekit` | `DazzleLib/dazzle-filekit` | none (the convention's archetype) |
 | L2 | `dazzle-linklib` | `dazzle_linklib` | `DazzleLib/dazzle-linklib` | new (P2; D1 import AMENDED to conform) |
 | L3 | `dazzle-preservelib` | `dazzle_preservelib` | `DazzleLib/dazzle-preservelib` | new (P3; supersedes the earlier "import stays `preservelib`" lean -- all consumers are ours, P4 fixes them) |
-| ⊥ | `dazzle-treelib` | `dazzle_treelib` | `DazzleLib/dazzle-treelib` | rename all three (from `dazzletreelib`/`dazzle-tree-lib`) + PyPI tombstone; lands P5 (nothing gates on it) |
+| ⊥ | `dazzle-treelib` (pointer) -> real dist `dazzletreelib` | `dazzletreelib` | `DazzleLib/dazzle-tree-lib` | **AMENDED (D9a)**: codeless pointer dist only (P5); import/repo unchanged; full rename preserved as a later option |
 
-Renamed-away PyPI dists (`unctools`, `dazzletreelib`) each get ONE final tombstone release: depends on the new dist, re-exports under the old import with a loud DeprecationWarning, never released again. Tracked in the alias register.
+Pointer dists (D9a): `dazzle-unctools` and `dazzle-treelib` are codeless pointer dists depending on the real `unctools`/`dazzletreelib` -- permanent by design (Rule 6 carve-out), tracked in the alias register as POINTER.
 7. **New-name hygiene (D4):** before exporting a public symbol, grep the stack for the name. Same-name-same-semantics -> one-home consolidation. Same-name-different-semantics -> layer-teaching renames. Per-repo api-stability canaries + the stack-wide audit tool enforce it.
-6. **Shim-alias policy: temporary, noisy, tracked, terminal.** During a migration, a renamed/moved symbol MAY keep a shim alias whose ONLY purposes are (a) surfacing breakage sites loudly (DeprecationWarning/log line naming the new home and the removal version) and (b) keeping consumers limping while the audit-tool sweep runs. Every shim is registered in the alias register (the maintainers' violation register) at creation with its slated removal version; a shim that ships past its removal version is itself a violation. Silent aliases are banned -- a shim that doesn't warn defeats its own purpose.
+6. **Shim-alias policy: temporary, noisy, tracked, terminal.** During a migration, a renamed/moved symbol MAY keep a shim alias whose ONLY purposes are (a) surfacing breakage sites loudly (DeprecationWarning/log line naming the new home and the removal version) and (b) keeping consumers limping while the audit-tool sweep runs. Every shim is registered in the alias register (the maintainers' violation register) at creation with its slated removal version; a shim that ships past its removal version is itself a violation. Silent aliases are banned -- a shim that doesn't warn defeats its own purpose. *Carve-out (D9a): CODELESS POINTER DISTS are exempt -- a PyPI dist containing nothing but metadata and a dependency on the real dist has no code to rot and no import to mislead; it is permanent by design (house precedent: `dazzlecmd`/`dazzle-dz`). Pointer dists are still registered in the alias register with status POINTER.*
 
 | Layer | Domain | Library | Answers the question |
 |---|---|---|---|
 | B | **Bedrock contracts** | `dazzle-lib` *(new, D10)* | "What can every stack object be expected to do (view/serialize), and what shapes do cross-layer payloads have?" Protocols + TypedDicts + exception root. Stdlib-only, MIT, behavior-free by charter. |
 | L0 | **Path identity** | `unctools` | "Is this path UNC / network / subst / local -- and what is its other name?" (May probe read-only; never mutates -- rule 3a.) |
 | L1 | **Filesystem primitives** | `dazzle-filekit` | "Do ONE thing to ONE filesystem object, correctly, on every OS." |
-| L2 | **Link serialization** | `dazzlelinklib` *(extraction, naming open -- D1)* | "Represent a link as durable portable DATA and rehydrate it anywhere." |
+| L2 | **Link serialization** | `dazzle-linklib` *(extraction; D1 resolved)* | "Represent a link as durable portable DATA and rehydrate it anywhere." |
 | L3 | **Operation orchestration** | `preservelib` *(new repo)* | "Do MANY things as a transaction: manifest, verify, conflict policy, rollback." |
 | ⊥ | **Traversal** | `dazzletreelib` | "Visit a tree efficiently" -- orthogonal engine, usable from any layer. |
 
@@ -210,7 +210,7 @@ Process (user, 2026-06-11): each still-open decision gets its own focused `/dev-
 | D6 | org moves | **RESOLVED** (follows D1) | dazzlelink tool stays DazzleTools; `DazzleLib/dazzlelinklib` born in DazzleLib; `DazzleLib/preservelib` born in DazzleLib. |
 | D7 | `unctools.operations` disposition | **RESOLVED** | Split per rule 3a (probe-not-mutate): identity probes + path algebra STAY; content-I/O wrappers DELETED (zero consumers); retry-pattern documented as on-demand future filekit capability. |
 | D8 | path-case capability home | **RESOLVED** | filekit: merge unctools' case fns with `fix_path_case` into one L1 implementation (0.3.0); unctools copies deleted. |
-| D9 | uniform `dazzle-*` renames for existing dists | **RESOLVED** | Three-axis convention adopted (Rule 5 table is normative): dist + import + repo all rename for unctools and treelib; PyPI tombstone strategy for the old dists; treelib's rename lands P5 (nothing gates on it); D1's import amended to `dazzle_linklib`; preservelib's import becomes `dazzle_preservelib`. |
+| D9 | uniform `dazzle-*` naming | **RESOLVED, then AMENDED (D9a, 2026-06-11)** | NEW libraries are born three-axis-uniform (dazzle-lib, dazzle-linklib, dazzle-preservelib; filekit already conformant). LEGACY libraries (unctools, treelib) keep their import + repo names and gain CODELESS POINTER DISTS (`dazzle-unctools`, `dazzle-treelib`) for PyPI discoverability -- the existing dazzlecmd/dazzle-dz house pattern. Rationale: renaming a working package's import is the riskiest P1 step attached to the least central libraries, for grep-uniformity gain only; the pointer reserves the name, and a future real rename simply ships as the pointer dist's 1.0. D1's `dazzle_linklib` / preservelib's `dazzle_preservelib` imports UNCHANGED by this amendment. |
 | D10 | **`dazzle-lib` bedrock package + base object protocol** (user-proposed) | **RESOLVED** | Option (a): dist `dazzle-lib`, import `dazzle_lib`, repo `DazzleLib/dazzle-lib`, Layer B below L0, MIT, stdlib-only forever. Contents per the charter in the Layer B section (Protocols + TypedDicts + DazzleError + one mixin; behavior banned; rule-of-two admission). Structural typing, not Java-style inheritance -- "the dict is the interface; objects know how to become dicts." Created in new Phase F. |
 
 
@@ -225,3 +225,19 @@ Phase notes hardened by the review:
 - **P3 additions**: delete the `preservelib.dazzlelink` `sys.path.insert` bundled-path fallback (rule 3 ban; review F10); ship `docs/api-stability.md` + `tests/test_import_stability.py` at FIRST release (review F9 -- every new lib gets the canary from day one, listing the P4 consumers' locked symbols).
 - **P4 addition (user)**: build a **consumer-audit tool** that greps/identifies every consumer of these libraries across *(maintainer-local path)* (imports, vendored copies, soft-imports) so post-break fixes are exhaustive, not best-effort. Candidate home: `DazzleLib-org` scripts or a `dz stack-audit` subcommand. This tool is the compat safety net that replaces aliases.
 - **P4 consumer list (verified)**: preserve CLI; safedel (drops `_lib` junction); ghtraf (unvendors); csb (Track C); dazzlelink tool; **dz `f-cp`/`f-mv`** -- these wrap `preservelib.operations.copy_operation/move_operation` through `_f_common/safe_ops.py`, a stable dz-facing adapter with a hard-fail sentinel (`PRESERVELIB_AVAILABLE`). **That adapter is the TEMPLATE for every P4 consumer**: consume the lib behind a thin facade you own, hard-fail when the capability genuinely can't degrade.
+
+
+---
+
+# ADDENDUM D9a (2026-06-11) -- legacy renames replaced by pointer dists
+
+**Ratified by user:** "Yep that's the smarter way and what we should be doing so we
+don't overengineer this for very little gain -- in fact we use this exact methodology
+for dazzlecmd and dazzle-dz (same thing just dazzle-dz is the alias)."
+
+Changes: D9 amended (new libs born uniform; legacy unctools/treelib keep import+repo,
+gain codeless pointer dists); Rule 5 table rows updated; Rule 6 gains the
+codeless-pointer carve-out; the unctools tombstone (A5) and treelib tombstone (A6)
+become POINTER dists (no ordering trap, no repo renames, no import churn). The
+dazzle-unctools 0.2.0 release reduces to: D7/D8/D4 surgery under the existing name +
+pointer dist registration. Full renames remain available later as 1.0-style decisions.
